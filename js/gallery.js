@@ -84,13 +84,19 @@ const imageTemplate = images => {
 
 const createGallery = () => {
   galleryList.innerHTML = imageTemplate(images);
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  galleryItems.forEach(item => {
+    item.style.width = '360px';
+    item.style.height = '200px';
+    item.style.position = 'relative';
+    item.style.display = 'block';
+  });
 };
 createGallery();
 galleryList.addEventListener('click', event => {
   event.preventDefault();
   console.log(event.target.dataset.source);
-  const galleryItem = event.target;
-  if (galleryItem.nodeName !== 'IMG') {
+  if (event.target.nodeName !== 'IMG') {
     return;
   }
   const modal = basicLightbox.create(
